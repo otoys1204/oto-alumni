@@ -82,20 +82,7 @@ document.querySelectorAll('.toggle-password').forEach(button => {
 });
 
 // Alert demo untuk tombol
-document.querySelectorAll('.btn, .btn-nav, .btn-nav-outline').forEach(button => {
-    button.addEventListener('click', function(e) {
-        if (this.getAttribute('onclick')) return; // Skip if already has onclick
-        
-        const text = this.textContent.trim();
-        if (text.includes('Daftar') || text.includes('Register')) {
-            e.preventDefault();
-            alert('🔷 Fitur registrasi akan segera hadir! (Demo Mode)');
-        } else if (text.includes('Login')) {
-            e.preventDefault();
-            alert('🔷 Halaman login masih dalam pengembangan (Demo Mode)');
-        }
-    });
-});
+
 
 // Counter animation for stats
 function animateCounter(element, target) {
