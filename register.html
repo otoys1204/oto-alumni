@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataAlumni - Registrasi Sekolah</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Additional CSS for register page */
+        .register-progress {
+            max-width: 800px;
+            margin: 50px auto;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        .progress-line {
+            position: absolute;
+            top: 25px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--biru-soft);
+            z-index: 1;
+        }
+        
+        .progress-fill {
+            position: absolute;
+            top: 25px;
+            left: 0;
+            width: 33%;
+            height: 4px;
+            background: var(--biru-glow);
+            z-index: 2;
+            transition: width 0.3s;
+        }
+        
+        .progress-step {
+            position: relative;
+            z-index: 3;
+            background: white;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--biru-deep);
+            border: 3px solid var(--biru-soft);
+            background: white;
+        }
+        
+        .progress-step.active {
+            border-color: var(--biru-glow);
+            background: var(--biru-glow);
+            color: white;
+        }
+        
+        .progress-step.completed {
+            border-color: var(--biru-sea);
+            background: var(--biru-sea);
+            color: white;
+        }
+        
+        .step-label {
+            position: absolute;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            text-align: center;
+            font-weight: 500;
+            color: #2e5770;
+            font-size: 0.9rem;
+        }
+        
+        .register-panel {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            margin: 40px 0 80px;
+        }
+        
+        .register-form {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 50px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--biru-soft);
+        }
+        
+        .form-header {
+            margin-bottom: 30px;
+        }
+        
+        .form-header h2 {
+            font-size: 2rem;
+            color: var(--biru-deep);
+            margin-bottom: 8px;
+        }
+        
+        .form-header p {
+            color: #2e5770;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: var(--biru-deep);
+            margin-bottom: 8px;
+        }
+        
+        .form-group label i {
+            color: var(--biru-sea);
+        }
+        
+        .required {
+            color: #e53e3e;
+            margin-left: 4px;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 40px;
+            border: 1.5px solid var(--biru-soft);
+            font-size: 1rem;
+            transition: 0.2s;
+            background: #f3f9ff;
+            font-family: inherit;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--biru-glow);
+            outline: none;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(34,113,179,0.1);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-row-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        
+        .checkbox-group input {
+            width: 20px;
+            height: 20px;
+            margin-top: 3px;
+            accent-color: var(--biru-sea);
+        }
+        
+        .checkbox-group label {
+            font-weight: 400;
+            color: #1f4a64;
+            font-size: 0.95rem;
+        }
+        
+        .checkbox-group a {
+            color: var(--biru-glow);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .btn-register {
+            background: linear-gradient(145deg, var(--biru-prof), var(--biru-sea));
+            color: white;
+            padding: 16px 40px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+            margin: 20px 0;
+        }
+        
+        .btn-register:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 30px -10px var(--biru-prof);
+        }
+        
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #2e5770;
+            font-size: 0.9rem;
+        }
+        
+        .register-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .info-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--biru-soft);
+        }
+        
+        .info-card h3 {
+            font-size: 1.5rem;
+            color: var(--biru-deep);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-card h3 i {
+            color: var(--emas);
+        }
+        
+        .benefit-list {
+            list-style: none;
+        }
+        
+        .benefit-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            color: #1f4a64;
+        }
+        
+        .benefit-list li i {
+            color: var(--biru-sea);
+        }
+        
+        .testimonial-mini {
+            background: var(--biru-langit);
+            border-radius: 30px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+        
+        .testimonial-mini i {
+            color: var(--biru-glow);
+            opacity: 0.5;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .testimonial-mini p {
+            font-style: italic;
+            color: #0a3b5e;
+            margin-bottom: 15px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .testimonial-author .avatar {
+            width: 45px;
+            height: 45px;
+            background: var(--biru-deep);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+        
+        .package-section {
+            margin: 60px 0;
+        }
+        
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .package-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 40px 30px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--biru-soft);
+            position: relative;
+            transition: 0.3s;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .package-card.popular {
+            border: 2px solid var(--emas);
+            background: linear-gradient(145deg, white, #fffbf0);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--emas);
+            color: var(--biru-deep);
+            padding: 8px 25px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        
+        .package-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--biru-deep);
+            margin-bottom: 10px;
+        }
+        
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--biru-deep);
+            margin-bottom: 5px;
+        }
+        
+        .package-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #2e5770;
+        }
+        
+        .package-desc {
+            color: #2e5770;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--biru-soft);
+        }
+        
+        .package-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .package-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: #1f4a64;
+        }
+        
+        .package-features li i {
+            color: var(--biru-sea);
+        }
+        
+        .package-features li.disabled {
+            color: #94a3b8;
+        }
+        
+        .package-features li.disabled i {
+            color: #94a3b8;
+        }
+        
+        .btn-package {
+            width: 100%;
+            padding: 12px;
+            border-radius: 60px;
+            font-weight: 600;
+            border: 2px solid var(--biru-deep);
+            background: transparent;
+            color: var(--biru-deep);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .btn-package:hover {
+            background: var(--biru-deep);
+            color: white;
+        }
+        
+        .btn-package.active {
+            background: var(--biru-deep);
+            color: white;
+        }
+        
+        .steps-register {
+            background: linear-gradient(135deg, var(--biru-deep), var(--biru-sea));
+            border-radius: var(--radius-xl);
+            padding: 60px 50px;
+            margin: 60px 0;
+            color: white;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .step-item {
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.15);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            color: white;
+        }
+        
+        .step-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .step-item p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 1024px) {
+            .register-panel {
+                grid-template-columns: 1fr;
+            }
+            
+            .package-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .form-row,
+            .form-row-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .package-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .register-progress {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-database"></i>
+                <span>DataAlumni</span>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="about.html">Tentang</a></li>
+                <li><a href="index.html#manfaat">Manfaat</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+                <li><a href="register.html" class="btn-nav active">Daftar Sekolah</a></li>
+                <li><a href="login.html" class="btn-nav-outline">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <span class="badge" style="background: var(--emas-light); margin-bottom: 20px;">GRATIS UJI COBA 30 HARI</span>
+            <h1 data-aos="fade-down">Daftarkan Sekolah Anda</h1>
+            <p data-aos="fade-down" data-aos-delay="50">Bergabung dengan 50+ sekolah terbaik di Indonesia</p>
+        </div>
+    </section>
+
+    <!-- Progress Bar -->
+    <div class="container">
+        <div class="register-progress" data-aos="fade-up">
+            <div class="progress-line"></div>
+            <div class="progress-fill" style="width: 33%;"></div>
+            <div class="progress-step active">
+                <span>1</span>
+                <span class="step-label">Data Sekolah</span>
+            </div>
+            <div class="progress-step">
+                <span>2</span>
+                <span class="step-label">Pilih Paket</span>
+            </div>
+            <div class="progress-step">
+                <span>3</span>
+                <span class="step-label">Aktivasi</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Register Panel -->
+    <div class="container">
+        <div class="register-panel">
+            <!-- Register Form -->
+            <div class="register-form" data-aos="fade-right">
+                <div class="form-header">
+                    <h2><i class="fas fa-pen-alt" style="color: var(--biru-sea);"></i> Formulir Pendaftaran</h2>
+                    <p>Isi data sekolah dengan lengkap. Semua data aman dan terenkripsi.</p>
+                </div>
+                
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label><i class="fas fa-school"></i> Nama Sekolah <span class="required">*</span></label>
+                        <input type="text" placeholder="Contoh: SMA Negeri 1 Jakarta" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-hashtag"></i> NPSN <span class="required">*</span></label>
+                            <input type="text" placeholder="Nomor Pokok Sekolah" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-layer-group"></i> Jenjang</label>
+                            <select>
+                                <option>SMA/SMK/MA</option>
+                                <option>SMP/MTs</option>
+                                <option>SD/MI</option>
+                                <option>Perguruan Tinggi</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-map-marker-alt"></i> Provinsi</label>
+                            <select>
+                                <option>DKI Jakarta</option>
+                                <option>Jawa Barat</option>
+                                <option>Jawa Tengah</option>
+                                <option>Jawa Timur</option>
+                                <option>Banten</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-city"></i> Kota/Kabupaten</label>
+                            <input type="text" placeholder="Contoh: Jakarta Selatan">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email Sekolah <span class="required">*</span></label>
+                        <input type="email" placeholder="admin@sekolah.sch.id" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-phone-alt"></i> No. Telepon</label>
+                            <input type="text" placeholder="(021) 1234 5678">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fab fa-whatsapp"></i> No. WhatsApp <span class="required">*</span></label>
+                            <input type="text" placeholder="08123456789" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-user-tie"></i> Nama Kepala Sekolah</label>
+                        <input type="text" placeholder="Drs. H. Ahmad Fauzi, M.Pd">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-users"></i> Jumlah Alumni (Estimasi)</label>
+                        <select>
+                            <option>< 500 alumni</option>
+                            <option>500 - 1.000 alumni</option>
+                            <option>1.000 - 2.500 alumni</option>
+                            <option>2.500 - 5.000 alumni</option>
+                            <option>> 5.000 alumni</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-comment"></i> Catatan Tambahan</label>
+                        <textarea rows="3" placeholder="Kebutuhan khusus, pertanyaan, atau jadwal demo..."></textarea>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">Saya setuju dengan <a href="#" onclick="alert('Syarat & Ketentuan (demo)')">Syarat & Ketentuan</a> dan <a href="#" onclick="alert('Kebijakan Privasi (demo)')">Kebijakan Privasi</a> DataAlumni. <span class="required">*</span></label>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="promo">
+                        <label for="promo">Saya ingin menerima informasi promo dan update fitur terbaru via email/WhatsApp.</label>
+                    </div>
+                    
+                    <button type="submit" class="btn-register" onclick="event.preventDefault(); alert('Pendaftaran berhasil dikirim! Tim kami akan menghubungi Anda dalam 1x24 jam. (DEMO)')">
+                        <i class="fas fa-paper-plane"></i> Kirim Pendaftaran
+                    </button>
+                    
+                    <div class="secure-badge">
+                        <i class="fas fa-shield-alt"></i> Data Anda aman dengan enkripsi SSL 256-bit
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Register Info -->
+            <div class="register-info" data-aos="fade-left">
+                <div class="info-card">
+                    <h3><i class="fas fa-gift"></i> Gratis 30 Hari</h3>
+                    <ul class="benefit-list">
+                        <li><i class="fas fa-check-circle"></i> Akses penuh fitur Pro</li>
+                        <li><i class="fas fa-check-circle"></i> Hingga 5.000 alumni</li>
+                        <li><i class="fas fa-check-circle"></i> Dashboard analitik</li>
+                        <li><i class="fas fa-check-circle"></i> Fitur donasi & crowdfunding</li>
+                        <li><i class="fas fa-check-circle"></i> Kartu alumni digital</li>
+                        <li><i class="fas fa-check-circle"></i> Event & reuni</li>
+                    </ul>
+                    <div style="background: var(--biru-langit); border-radius: 30px; padding: 15px; margin-top: 20px; text-align: center;">
+                        <span style="font-weight: 700; color: var(--biru-deep);">Tanpa kartu kredit • Tanpa komitmen</span>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-star" style="color: var(--emas);"></i> Testimoni</h3>
+                    <div class="testimonial-mini">
+                        <i class="fas fa-quote-right"></i>
+                        <p>"Proses registrasi sangat cepat, hanya 5 menit! Besoknya langsung diaktivasi. Sekarang alumni kami lebih terorganisir."</p>
+                        <div class="testimonial-author">
+                            <div class="avatar">RW</div>
+                            <div>
+                                <strong>Rina Wijayanti</strong>
+                                <p style="font-size: 0.85rem; margin: 0;">Humas SMK Pusat Prestasi</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 25px;">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                            <i class="fas fa-check-circle" style="color: var(--biru-sea); font-size: 1.2rem;"></i>
+                            <span><strong>50+</strong> sekolah telah bergabung</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-check-circle" style="color: var(--biru-sea); font-size: 1.2rem;"></i>
+                            <span><strong>18.500+</strong> alumni terdata</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Package Section -->
+    <div class="container">
+        <div class="package-section">
+            <div class="section-header" data-aos="fade-up">
+                <span class="badge">💰 PAKET BIAYA</span>
+                <h2>Pilih Skema yang Sesuai</h2>
+                <p>Gratis uji coba 30 hari, upgrade kapan saja</p>
+            </div>
+            
+            <div class="package-grid">
+                <div class="package-card" data-aos="zoom-in">
+                    <div class="package-name">Basic</div>
+                    <div class="package-price">Gratis<span>/selamanya</span></div>
+                    <div class="package-desc">Untuk sekolah dengan database kecil</div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Hingga 500 alumni</li>
+                        <li><i class="fas fa-check"></i> Database alumni</li>
+                        <li><i class="fas fa-check"></i> Undang via email</li>
+                        <li><i class="fas fa-check"></i> Export data dasar</li>
+                        <li class="disabled"><i class="fas fa-times"></i> Dashboard analitik</li>
+                        <li class="disabled"><i class="fas fa-times"></i> Fitur donasi</li>
+                    </ul>
+                    <button class="btn-package" onclick="alert('Pilih paket Basic (demo)')">Pilih Paket</button>
+                </div>
+                
+                <div class="package-card popular" data-aos="zoom-in" data-aos-delay="50">
+                    <div class="popular-badge">⭐ TERLARIS</div>
+                    <div class="package-name">Pro</div>
+                    <div class="package-price">Rp 499k<span>/bulan</span></div>
+                    <div class="package-desc">Untuk sekolah dengan pertumbuhan aktif</div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Hingga 5.000 alumni</li>
+                        <li><i class="fas fa-check"></i> Semua fitur Basic</li>
+                        <li><i class="fas fa-check"></i> Dashboard analitik</li>
+                        <li><i class="fas fa-check"></i> Fitur donasi & crowdfunding</li>
+                        <li><i class="fas fa-check"></i> Kartu alumni digital</li>
+                        <li><i class="fas fa-check"></i> Event & reuni</li>
+                    </ul>
+                    <button class="btn-package active" onclick="alert('Mulai uji coba gratis 30 hari paket Pro (demo)')">Coba Gratis</button>
+                </div>
+                
+                <div class="package-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="package-name">Enterprise</div>
+                    <div class="package-price">Custom<span>/hubungi kami</span></div>
+                    <div class="package-desc">Untuk yayasan & dinas pendidikan</div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Alumni tidak terbatas</li>
+                        <li><i class="fas fa-check"></i> Semua fitur Pro</li>
+                        <li><i class="fas fa-check"></i> Integrasi SIM sekolah</li>
+                        <li><i class="fas fa-check"></i> Kustom branding</li>
+                        <li><i class="fas fa-check"></i> Dedicated support</li>
+                        <li><i class="fas fa-check"></i> Onboarding training</li>
+                    </ul>
+                    <button class="btn-package" onclick="alert('Hubungi tim sales (demo)')">Hubungi Kami</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Steps Section -->
+    <div class="container">
+        <div class="steps-register" data-aos="zoom-in-up">
+            <h2 style="text-align: center; font-size: 2rem;">4 Langkah Mudah Bergabung</h2>
+            <div class="steps-grid">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <h4>Isi Formulir</h4>
+                    <p>Lengkapi data sekolah dalam 5 menit. Semua data terenkripsi.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <h4>Verifikasi Data</h4>
+                    <p>Tim kami akan verifikasi data dan menghubungi via WhatsApp.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <h4>Aktivasi Akun</h4>
+                    <p>Akun diaktivasi maksimal 1x24 jam. Gratis uji coba 30 hari.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <h4>Kelola Alumni</h4>
+                    <p>Mulai impor data alumni dan nikmati semua fitur premium.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content" data-aos="zoom-in-up" style="background: linear-gradient(145deg, var(--emas), #fcd34d); color: var(--biru-deep);">
+                <h2>Siap Modernisasi Manajemen Alumni?</h2>
+                <p style="color: var(--biru-deep); opacity: 0.9;">Gabung dengan 50+ sekolah terbaik. Gratis uji coba 30 hari!</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn" style="background: var(--biru-deep); color: white;" onclick="alert('Mulai registrasi sekarang (demo)')"><i class="fas fa-rocket"></i> Daftar Sekarang</a>
+                    <a href="kontak.html" class="btn btn-outline" style="border-color: var(--biru-deep); color: var(--biru-deep);"><i class="fas fa-headset"></i> Konsultasi Gratis</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="logo">
+                        <i class="fas fa-database"></i>
+                        <span>DataAlumni</span>
+                    </div>
+                    <p>Jembatan abadi antara sekolah dan alumni. Solusi manajemen alumni #1 untuk sekolah Indonesia.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Produk</h4>
+                    <ul>
+                        <li><a href="#">Fitur Sekolah</a></li>
+                        <li><a href="#">Harga</a></li>
+                        <li><a href="#">Demo</a></li>
+                        <li><a href="#">Studi Kasus</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Perusahaan</h4>
+                    <ul>
+                        <li><a href="about.html">Tentang</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Karir</a></li>
+                        <li><a href="kontak.html">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Dukungan</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privasi</a></li>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                        <li><a href="#">Bantuan</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DataAlumni. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataAlumni - Rumah Alumni Digital</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-database"></i>
+                <span>DataAlumni</span>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="active">Beranda</a></li>
+                <li><a href="about.html">Tentang</a></li>
+                <li><a href="#manfaat">Manfaat</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+                <li><a href="register.html" class="btn-nav">Daftar Sekolah</a></li>
+                <li><a href="login.html" class="btn-nav-outline">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content" data-aos="fade-right">
+                <span class="badge"><i class="fas fa-star"></i> Platform Alumni #1 di Indonesia</span>
+                <h1>Jejak Sukses <span class="highlight">Satu Alumni</span> Satu Data</h1>
+                <p>DataAlumni adalah ekosistem terpadu untuk sekolah menelusuri, memberdayakan, dan merayakan alumni. Wujudkan networking abadi antara sekolah dan lulusan.</p>
+                <div class="hero-buttons">
+                    <a href="register.html" class="btn btn-primary"><i class="fas fa-rocket"></i> Daftarkan Sekolah</a>
+                    <a href="#manfaat" class="btn btn-outline"><i class="fas fa-play"></i> Lihat Demo</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h2>50+</h2>
+                        <p>Sekolah Aktif</p>
+                    </div>
+                    <div class="stat-item">
+                        <h2>18.5K</h2>
+                        <p>Alumni Terdata</p>
+                    </div>
+                    <div class="stat-item">
+                        <h2>93%</h2>
+                        <p>Tingkat Kepuasan</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image" data-aos="fade-left">
+                <i class="fas fa-user-graduate"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manfaat Section -->
+    <section id="manfaat" class="benefits">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="badge">✨ MANFAAT</span>
+                <h2>Mengapa Memilih DataAlumni?</h2>
+                <p>Solusi lengkap untuk manajemen alumni sekolah Anda</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Dashboard Real-time</h3>
+                    <p>Pantau data alumni, statistik karir, dan partisipasi dalam satu tampilan</p>
+                </div>
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="50">
+                    <div class="benefit-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>Donasi & Beasiswa</h3>
+                    <p>Fitur crowdfunding khusus alumni untuk beasiswa adik kelas</p>
+                </div>
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="benefit-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <h3>Kartu Alumni Digital</h3>
+                    <p>Setiap alumni mendapat QR Card untuk networking di event reuni</p>
+                </div>
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="benefit-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Event & Reuni</h3>
+                    <p>Undangan otomatis via WhatsApp & Email. RSVP digital terintegrasi</p>
+                </div>
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="benefit-icon">
+                        <i class="fas fa-file-import"></i>
+                    </div>
+                    <h3>Import Data Massal</h3>
+                    <p>Migrasi ribuan data alumni dari Excel/CSV hanya dalam 5 menit</p>
+                </div>
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="250">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Keamanan Data</h3>
+                    <p>Enkripsi end-to-end, data sekolah sepenuhnya milik Anda</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimoni -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="badge">💬 TESTIMONI</span>
+                <h2>Apa Kata Mereka?</h2>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card" data-aos="zoom-in">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <p>"DataAlumni membantu kami meningkatkan partisipasi alumni hingga 300% dalam 1 tahun. Fitur donasinya sangat membantu untuk beasiswa siswa kurang mampu."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AF</div>
+                        <div>
+                            <h4>Drs. H. Ahmad Fauzi</h4>
+                            <p>Kepala SMAN 1 Jakarta</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="50">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <p>"Dashboard-nya sangat intuitif. Sekarang kami bisa update data alumni real-time tanpa repot. Tim support juga responsif banget!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RW</div>
+                        <div>
+                            <h4>Rina Wijayanti, S.Pd</h4>
+                            <p>Humas SMK Pusat Prestasi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <p>"DataAlumni menghubungkan saya dengan adik kelas untuk magang di startup saya. Sekolah jadi pusat networking luar biasa!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">NP</div>
+                        <div>
+                            <h4>Nadia Prameswari</h4>
+                            <p>Alumni 2017, UI/UX Designer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content" data-aos="zoom-in-up">
+                <h2>Siap Modernisasi Manajemen Alumni?</h2>
+                <p>Bergabung dengan 50+ sekolah terbaik di Indonesia. Gratis uji coba 30 hari!</p>
+                <div class="cta-buttons">
+                    <a href="register.html" class="btn btn-light"><i class="fas fa-rocket"></i> Daftar Sekarang</a>
+                    <a href="kontak.html" class="btn btn-outline-light"><i class="fas fa-headset"></i> Hubungi Tim</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="logo">
+                        <i class="fas fa-database"></i>
+                        <span>DataAlumni</span>
+                    </div>
+                    <p>Jembatan abadi antara sekolah dan alumni. Solusi manajemen alumni #1 untuk sekolah Indonesia.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Produk</h4>
+                    <ul>
+                        <li><a href="#">Fitur Sekolah</a></li>
+                        <li><a href="#">Harga</a></li>
+                        <li><a href="#">Demo</a></li>
+                        <li><a href="#">Studi Kasus</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Perusahaan</h4>
+                    <ul>
+                        <li><a href="about.html">Tentang</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Karir</a></li>
+                        <li><a href="kontak.html">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Dukungan</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privasi</a></li>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                        <li><a href="#">Bantuan</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DataAlumni. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>DataAlumni • Solusi Lengkap untuk Sekolah</title>
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%);
+      color: #1e293b;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --biru-deep: #0a2c4d;
+      --biru-prof: #0a4b7a;
+      --biru-sea: #0f6f7f;
+      --biru-glow: #2271b3;
+      --biru-mist: #e3f0fd;
+      --biru-soft: #d4e6ff;
+      --biru-ice: #c2dcff;
+      --biru-langit: #eef6ff;
+      --emas: #fbbf24;
+      --emas-light: #fde68a;
+      --emas-pale: #fef3c7;
+      --putih: #ffffff;
+      --shadow-sm: 0 15px 30px -10px rgba(10, 44, 77, 0.08);
+      --shadow-md: 0 25px 40px -15px rgba(10, 44, 77, 0.12);
+      --shadow-lg: 0 40px 60px -20px rgba(2, 80, 120, 0.2);
+      --radius-xl: 2.5rem;
+      --radius-lg: 2rem;
+      --radius-md: 1.5rem;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* NAVIGASI KHUSUS SEKOLAH */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo i {
+      font-size: 2rem;
+      background: linear-gradient(145deg, #0a4b7a, #0f6f7f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .logo span {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(145deg, #0a2c4d, #0f6f7f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      font-weight: 500;
+    }
+    .nav-links a {
+      color: #0a3b5e;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 6px;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      border-bottom-color: var(--biru-glow);
+      color: var(--biru-deep);
+    }
+    .nav-links a.active {
+      border-bottom-color: var(--emas);
+      color: var(--biru-deep);
+      font-weight: 700;
+    }
+
+    .btn {
+      background: white;
+      padding: 12px 30px;
+      border-radius: 60px;
+      font-weight: 600;
+      border: 1px solid rgba(10,75,122,0.1);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: linear-gradient(145deg, #0a4b7a, #0e608b);
+      color: white;
+      box-shadow: 0 12px 22px -10px #0a4b7a;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(145deg, #0e5d8a, #0a4b7a);
+      transform: translateY(-3px);
+      box-shadow: 0 24px 30px -12px #0a4b7a;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1.8px solid var(--biru-deep);
+      color: var(--biru-deep);
+    }
+    .btn-outline:hover {
+      background: var(--biru-deep);
+      color: white;
+    }
+    .btn-cta {
+      background: var(--emas);
+      color: var(--biru-deep);
+      border: none;
+      font-weight: 700;
+      padding: 16px 40px;
+    }
+    .btn-cta:hover {
+      background: #fcd34d;
+      transform: translateY(-3px);
+      box-shadow: 0 20px 30px -10px #fbbf24;
+    }
+
+    /* HERO SEKOLAH */
+    .school-hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 0 60px;
+      flex-wrap: wrap;
+    }
+    .school-hero-text {
+      flex: 1 1 450px;
+    }
+    .school-hero-text h1 {
+      font-size: 3.4rem;
+      font-weight: 800;
+      line-height: 1.15;
+      background: linear-gradient(145deg, #0a2c4d, #0a6e7c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+    }
+    .school-hero-text .highlight {
+      background: linear-gradient(120deg, #fbbf24, #fde68a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .school-hero-desc {
+      font-size: 1.25rem;
+      color: #2c4c6b;
+      margin: 24px 0 32px;
+      max-width: 550px;
+    }
+    .school-badge {
+      background: var(--biru-langit);
+      padding: 8px 24px;
+      border-radius: 60px;
+      display: inline-block;
+      font-weight: 600;
+      color: var(--biru-deep);
+      margin-bottom: 20px;
+    }
+    .school-hero-image {
+      flex: 1 1 350px;
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+    .school-hero-image i {
+      font-size: 16rem;
+      color: var(--biru-ice);
+      text-shadow: 25px 25px 0 rgba(10, 110, 124, 0.08);
+    }
+
+    /* STATISTIK SEKOLAH */
+    .school-stats {
+      display: flex;
+      gap: 60px;
+      margin: 30px 0 20px;
+      flex-wrap: wrap;
+    }
+    .stat-item h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--biru-deep);
+    }
+    .stat-item p {
+      color: #2e5770;
+      font-weight: 500;
+    }
+
+    /* SECTION HEADER */
+    .section-header {
+      text-align: center;
+      margin: 80px 0 40px;
+    }
+    .section-header h2 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--biru-deep);
+      margin-bottom: 16px;
+    }
+    .section-header p {
+      font-size: 1.2rem;
+      color: #2e5770;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .section-badge {
+      background: var(--emas-light);
+      color: var(--biru-deep);
+      padding: 8px 32px;
+      border-radius: 60px;
+      display: inline-block;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    /* FITUR UNGGULAN SEKOLAH */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin: 40px 0;
+    }
+    .feature-card {
+      background: white;
+      border-radius: 40px;
+      padding: 40px 32px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--biru-soft);
+      transition: all 0.25s;
+    }
+    .feature-card:hover {
+      transform: translateY(-12px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--biru-glow);
+    }
+    .feature-icon {
+      background: var(--biru-mist);
+      width: 80px;
+      height: 80px;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+    .feature-icon i {
+      font-size: 2.5rem;
+      color: var(--biru-deep);
+    }
+    .feature-card h3 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--biru-deep);
+      margin-bottom: 16px;
+    }
+    .feature-card p {
+      color: #1f4a64;
+      line-height: 1.6;
+    }
+
+    /* DASHBOARD PREVIEW */
+    .dashboard-preview {
+      background: linear-gradient(135deg, #0a2c4d, #0f5e73);
+      border-radius: 70px;
+      padding: 60px 50px;
+      margin: 80px 0;
+      color: white;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+    }
+    .dashboard-text {
+      flex: 1 1 300px;
+    }
+    .dashboard-text h3 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    .dashboard-text ul {
+      list-style: none;
+    }
+    .dashboard-text li {
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 1.1rem;
+    }
+    .dashboard-text li i {
+      color: var(--emas);
+    }
+    .dashboard-mock {
+      flex: 1 1 400px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      border-radius: 40px;
+      padding: 40px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .dashboard-mock .mock-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* FITUR LENGKAP SEKOLAH (2 kolom) */
+    .school-features-detailed {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin: 60px 0;
+    }
+    .detail-card {
+      background: white;
+      border-radius: 48px;
+      padding: 44px 40px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--biru-soft);
+    }
+    .detail-card h3 {
+      font-size: 1.9rem;
+      color: var(--biru-deep);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .detail-list {
+      list-style: none;
+    }
+    .detail-list li {
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 1.1rem;
+    }
+    .detail-list li i {
+      color: var(--emas);
+      font-size: 1.3rem;
+    }
+
+    /* TESTIMONI KHUSUS SEKOLAH */
+    .testimonial-school {
+      background: var(--biru-langit);
+      border-radius: 70px;
+      padding: 60px 50px;
+      margin: 60px 0;
+    }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .testi-card-school {
+      background: white;
+      border-radius: 40px;
+      padding: 36px;
+      box-shadow: var(--shadow-sm);
+    }
+    .testi-card-school i {
+      color: var(--biru-glow);
+      opacity: 0.3;
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .testi-author img {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--biru-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* PAKET & HARGA */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin: 50px 0;
+    }
+    .pricing-card {
+      background: white;
+      border-radius: 48px;
+      padding: 44px 32px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--biru-soft);
+      position: relative;
+      transition: 0.25s;
+    }
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+    .pricing-card.popular {
+      border: 2px solid var(--emas);
+      background: linear-gradient(145deg, white, #fffbf0);
+    }
+    .popular-badge {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--emas);
+      color: var(--biru-deep);
+      padding: 8px 28px;
+      border-radius: 60px;
+      font-weight: 700;
+    }
+    .pricing-header {
+      text-align: center;
+      border-bottom: 2px solid #eef2f6;
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+    }
+    .pricing-header h4 {
+      font-size: 1.8rem;
+      color: var(--biru-deep);
+    }
+    .pricing-header .price {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--biru-deep);
+    }
+    .pricing-features {
+      list-style: none;
+    }
+    .pricing-features li {
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* CTA SEKOLAH */
+    .school-cta {
+      background: linear-gradient(145deg, #0a2c4d, #0e5468);
+      border-radius: 80px;
+      padding: 70px 60px;
+      color: white;
+      text-align: center;
+      margin: 70px 0;
+    }
+    .school-cta h2 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .school-cta p {
+      font-size: 1.3rem;
+      opacity: 0.95;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 48px 0 32px;
+      border-top: 2px solid #cde0f0;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 1000px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonial-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .school-features-detailed { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .school-hero-text h1 { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- NAVIGASI -->
+    <nav>
+      <div class="logo">
+        <i class="fas fa-database"></i>
+        <span>DataAlumni</span>
+      </div>
+      <div class="nav-links">
+        <a href="#">Beranda</a>
+        <a href="#">Tentang</a>
+        <a href="#">Manfaat</a>
+        <a href="#" class="active">Sekolah</a>
+        <a href="#">Kontak</a>
+        <a href="#">Registrasi</a>
+      </div>
+      <div>
+        <button class="btn btn-primary" onclick="alert('Registrasi Sekolah (demo)')"><i class="fas fa-graduation-cap"></i> Daftar Sekolah</button>
+      </div>
+    </nav>
+
+    <!-- HERO SECTION SEKOLAH -->
+    <div class="school-hero" data-aos="fade-up">
+      <div class="school-hero-text">
+        <span class="school-badge"><i class="fas fa-star"></i> Solusi #1 Alumni Sekolah</span>
+        <h1>Kelola Alumni <span class="highlight">Tanpa Ribet</span>, Tingkatkan Reputasi Sekolah</h1>
+        <p class="school-hero-desc">Platform manajemen alumni terintegrasi untuk sekolah. Pantau karir, galang donasi, dan permudah akreditasi dalam satu dashboard.</p>
+        <div style="display: flex; gap: 18px; flex-wrap: wrap;">
+          <button class="btn btn-cta" onclick="alert('Mulai uji coba gratis')"><i class="fas fa-rocket"></i> Coba Gratis 30 Hari</button>
+          <button class="btn btn-outline" onclick="alert('Jadwalkan demo')"><i class="fas fa-calendar"></i> Jadwalkan Demo</button>
+        </div>
+        <div class="school-stats">
+          <div class="stat-item">
+            <h2>50+</h2>
+            <p>Sekolah Mitra</p>
+          </div>
+          <div class="stat-item">
+            <h2>18.5K</h2>
+            <p>Alumni Terdata</p>
+          </div>
+          <div class="stat-item">
+            <h2>93%</h2>
+            <p>Tingkat Kepuasan</p>
+          </div>
+        </div>
+      </div>
+      <div class="school-hero-image" data-aos="fade-left" data-aos-delay="200">
+        <i class="fas fa-school"></i>
+      </div>
+    </div>
+
+    <!-- FITUR UNGGULAN SEKOLAH -->
+    <div class="section-header" data-aos="fade-down">
+      <span class="section-badge">⚡ FITUR PREMIUM</span>
+      <h2>Semua Kebutuhan Sekolah dalam Satu Platform</h2>
+      <p>Dari manajemen data hingga analisis karir alumni, semua tersedia.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="feature-icon">
+          <i class="fas fa-file-import"></i>
+        </div>
+        <h3>Import Data Massal</h3>
+        <p>Migrasi ribuan data alumni dari Excel/CSV hanya dalam 5 menit. Didukung validasi otomatis.</p>
+      </div>
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="50">
+        <div class="feature-icon">
+          <i class="fas fa-chart-network"></i>
+        </div>
+        <h3>Peta Karir Interaktif</h3>
+        <p>Lihat sebaran alumni di seluruh dunia. Filter berdasarkan angkatan, profesi, atau lokasi.</p>
+      </div>
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="feature-icon">
+          <i class="fas fa-qrcode"></i>
+        </div>
+        <h3>Kartu Alumni Digital</h3>
+        <p>Setiap alumni mendapat QR Card untuk networking di event reuni atau rekrutmen.</p>
+      </div>
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="feature-icon">
+          <i class="fas fa-hand-holding-heart"></i>
+        </div>
+        <h3>Donasi & Beasiswa</h3>
+        <p>Fitur crowdfunding khusus alumni. Lacak donasi real-time untuk beasiswa adik kelas.</p>
+      </div>
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="feature-icon">
+          <i class="fas fa-calendar-check"></i>
+        </div>
+        <h3>Event & Reuni</h3>
+        <p>Undangan otomatis via WhatsApp & Email. RSVP dan absensi digital terintegrasi.</p>
+      </div>
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="250">
+        <div class="feature-icon">
+          <i class="fas fa-file-certificate"></i>
+        </div>
+        <h3>Laporan Akreditasi</h3>
+        <p>Generate borang tracer study siap cetak. Memenuhi standar BAN-S/M.</p>
+      </div>
+    </div>
+
+    <!-- DASHBOARD PREVIEW -->
+    <div class="dashboard-preview" data-aos="zoom-in-up">
+      <div class="dashboard-text">
+        <h3>📊 Dashboard Intuitif, Data Real-time</h3>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> Lihat pertumbuhan database alumni</li>
+          <li><i class="fas fa-check-circle"></i> Statistik donasi & partisipasi event</li>
+          <li><i class="fas fa-check-circle"></i> Tren karir alumni per tahun</li>
+          <li><i class="fas fa-check-circle"></i> Export laporan 1 klik (PDF/Excel)</li>
+        </ul>
+        <button class="btn" style="background: var(--emas); color: var(--biru-deep); margin-top: 30px; padding: 14px 36px;" onclick="alert('Lihat demo dashboard')"><i class="fas fa-play"></i> Lihat Demo Dashboard</button>
+      </div>
+      <div class="dashboard-mock">
+        <div class="mock-item">
+          <span>Total Alumni</span>
+          <span style="font-weight: 700; font-size: 1.3rem;">2,847</span>
+        </div>
+        <div class="mock-item">
+          <span>Bekerja</span>
+          <span style="font-weight: 700;">1,932 (68%)</span>
+        </div>
+        <div class="mock-item">
+          <span>Melanjutkan Studi</span>
+          <span style="font-weight: 700;">487 (17%)</span>
+        </div>
+        <div class="mock-item">
+          <span>Wirausaha</span>
+          <span style="font-weight: 700;">322 (11%)</span>
+        </div>
+        <div class="mock-item">
+          <span>Donasi Terkumpul</span>
+          <span style="font-weight: 700; color: var(--emas);">Rp 148,7 Jt</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FITUR DETAIL 2 KOLOM -->
+    <div class="school-features-detailed">
+      <div class="detail-card" data-aos="fade-right">
+        <h3><i class="fas fa-building" style="color: var(--biru-sea);"></i> Manajemen Sekolah</h3>
+        <ul class="detail-list">
+          <li><i class="fas fa-check"></i> Multi-admin (kepsek, humas, TU)</li>
+          <li><i class="fas fa-check"></i> Manajemen angkatan & jurusan</li>
+          <li><i class="fas fa-check"></i> Undangan massal via WA/Email</li>
+          <li><i class="fas fa-check"></i> Integrasi dengan SIM sekolah</li>
+          <li><i class="fas fa-check"></i> Kustom branding sekolah</li>
+        </ul>
+      </div>
+      <div class="detail-card" data-aos="fade-left">
+        <h3><i class="fas fa-users" style="color: var(--biru-sea);"></i> Engagement Alumni</h3>
+        <ul class="detail-list">
+          <li><i class="fas fa-check"></i> Forum diskusi antar alumni</li>
+          <li><i class="fas fa-check"></i> Fitur mentoring adik kelas</li>
+          <li><i class="fas fa-check"></i> Lowongan kerja eksklusif</li>
+          <li><i class="fas fa-check"></i> Birthday tracker & ucapan otomatis</li>
+          <li><i class="fas fa-check"></i> Survey & polling instan</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TESTIMONI KHUSUS SEKOLAH -->
+    <div class="testimonial-school" data-aos="fade-up">
+      <div style="text-align: center;">
+        <span class="section-badge" style="background: white;">💬 TESTIMONI</span>
+        <h2 style="font-size: 2.2rem; color: var(--biru-deep); margin-top: 16px;">Apa Kata Sekolah Mitra?</h2>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testi-card-school">
+          <i class="fas fa-quote-right" style="font-size: 2rem;"></i>
+          <p style="font-size: 1.1rem; margin-bottom: 20px;">"DataAlumni membantu kami meningkatkan partisipasi alumni hingga 300% dalam 1 tahun. Fitur donasinya sangat membantu untuk beasiswa siswa kurang mampu."</p>
+          <div class="testi-author">
+            <div style="width: 56px; height: 56px; background: var(--biru-soft); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+              <i class="fas fa-user-tie" style="font-size: 1.8rem; color: var(--biru-deep);"></i>
+            </div>
+            <div>
+              <h4 style="color: var(--biru-deep);">Drs. H. Ahmad Fauzi</h4>
+              <p style="color: #2e5770;">Kepala SMAN 1 Jakarta</p>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card-school">
+          <i class="fas fa-quote-right" style="font-size: 2rem;"></i>
+          <p style="font-size: 1.1rem; margin-bottom: 20px;">"Dashboard-nya sangat intuitif. Sekarang kami bisa update data alumni real-time tanpa repot. Tim support juga responsif banget!"</p>
+          <div class="testi-author">
+            <div style="width: 56px; height: 56px; background: var(--biru-soft); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+              <i class="fas fa-user-circle" style="font-size: 1.8rem; color: var(--biru-deep);"></i>
+            </div>
+            <div>
+              <h4 style="color: var(--biru-deep);">Rina Wijayanti, S.Pd</h4>
+              <p style="color: #2e5770;">Humas SMK Pusat Prestasi</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAKET HARGA -->
+    <div class="section-header" data-aos="fade-down">
+      <span class="section-badge">💰 PAKET BIAYA</span>
+      <h2>Pilih Skema yang Sesuai</h2>
+      <p>Gratis uji coba 30 hari, tanpa kartu kredit.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="pricing-card" data-aos="zoom-in">
+        <div class="pricing-header">
+          <h4>Basic</h4>
+          <div class="price">Gratis</div>
+          <p style="color: #2e5770; margin-top: 8px;">Selamanya</p>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check" style="color: var(--biru-sea);"></i> Hingga 500 alumni</li>
+          <li><i class="fas fa-check" style="color: var(--biru-sea);"></i> Database alumni</li>
+          <li><i class="fas fa-check" style="color: var(--biru-sea);"></i> Undang via email</li>
+          <li><i class="fas fa-check" style="color: var(--biru-sea);"></i> Export data dasar</li>
+          <li><i class="fas fa-times" style="color: #94a3b8;"></i> Dashboard analitik</li>
+          <li><i class="fas fa-times" style="color: #94a3b8;"></i> Fitur donasi</li>
+        </ul>
+        <button class="btn" style="width: 100%; margin-top: 24px;" onclick="alert('Mulai paket Basic')">Pilih Paket</button>
+      </div>
+
+      <div class="pricing-card popular" data-aos="zoom-in" data-aos-delay="50">
+        <div class="popular-badge">TERPOPULER</div>
+        <div class="pricing-header">
+          <h4>Pro</h4>
+          <div class="price">Rp 499k</div>
+          <p style="color: #2e5770; margin-top: 8px;">/bulan</p>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check" style="color: var(--biru-sea);"></i> Hingga 5.000 alumni</li>
+          <li><i class="fas fa-check" style="color: var(--biru-sea);"></i> Semua fitur Basic</li>
+          <li><i class="fas fa-check" style="color: var(--biru-sea);"></i> Dashboard analitik</li>
+          <li><i class="fas fa-check" style="color: var(--biru-sea);"></i> Fitur donasi & crowdfunding</li>
+          <li><i class="fas fa-check" style="color: var(--biru-sea);"></i> Kartu alumni digital</li>
+          <li><i class="fas fa-check" style="color: var(--biru-sea);"></i> Event & reuni</li>
+        </ul>
+        <button class="btn btn-primary" style="width: 100%; margin-top: 24px;" onclick="alert('Mulai uji coba Pro gratis')">Coba Gratis 30 Hari</button>
+      </div>
+
+      <div class="pricing-card" data-aos="zoom-in" data-aos-delay="100">
+        <div class="pricing-header">
+          <h4>Enterprise</h4>
+          <div class="price">Custom</div>
+          <p style="color: #2e5770; margin-top: 8px;">Hubungi kami</p>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check" style="color: var(--biru-sea);"></i> Alumni tidak terbatas</li>
+          <li><i class="fas fa-check" style="color: var(--biru-sea);"></i> Semua fitur Pro</li>
+          <li><i class="fas fa-check" style="color: var(--biru-sea);"></i> Integrasi SIM sekolah</li>
+          <li><i class="fas fa-check" style="color: var(--biru-sea);"></i> Kustom branding</li>
+          <li><i class="fas fa-check" style="color: var(--biru-sea);"></i> Dedicated support</li>
+          <li><i class="fas fa-check" style="color: var(--biru-sea);"></i> Onboarding training</li>
+        </ul>
+        <button class="btn btn-outline" style="width: 100%; margin-top: 24px;" onclick="alert('Hubungi tim sales')">Hubungi Kami</button>
+      </div>
+    </div>
+
+    <!-- CTA SEKOLAH -->
+    <div class="school-cta" data-aos="zoom-in-up">
+      <h2>Siap Modernisasi Manajemen Alumni?</h2>
+      <p>Bergabung dengan 50+ sekolah terbaik di Indonesia. Gratis uji coba 30 hari!</p>
+      <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+        <button class="btn btn-cta" style="background: white; color: var(--biru-deep); padding: 18px 48px; font-size: 1.2rem;" onclick="alert('Registrasi sekolah')"><i class="fas fa-pen-alt"></i> Daftar Sekarang</button>
+        <button class="btn" style="background: transparent; border: 2px solid white; color: white; padding: 18px 48px; font-size: 1.2rem;" onclick="alert('Hubungi tim kami')"><i class="fas fa-headset"></i> Hubungi Tim</button>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div style="display: flex; gap: 60px; flex-wrap: wrap; width: 100%;">
+        <div style="flex: 2;">
+          <div class="logo" style="margin-bottom: 16px;">
+            <i class="fas fa-database"></i>
+            <span style="font-size: 1.5rem;">DataAlumni</span>
+          </div>
+          <p style="color:#2a4e66;">Solusi manajemen alumni #1 untuk sekolah Indonesia.</p>
+        </div>
+        <div>
+          <h5 style="color: var(--biru-deep);">Produk</h5>
+          <p>Fitur Sekolah</p>
+          <p>Harga</p>
+          <p>Demo</p>
+        </div>
+        <div>
+          <h5 style="color: var(--biru-deep);">Sumber Daya</h5>
+          <p>Studi Kasus</p>
+          <p>Blog</p>
+          <p>FAQ</p>
+        </div>
+        <div>
+          <h5 style="color: var(--biru-deep);">Kontak</h5>
+          <p><i class="fas fa-envelope"></i> hello@dataalumni.id</p>
+          <p><i class="fab fa-whatsapp"></i> +62 812-3456-7890</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      once: true,
+      duration: 700,
+      offset: 60
+    });
+  </script>
+  <style>
+    .pricing-card .btn, .dashboard-preview .btn, .school-cta .btn {
+      transition: all 0.2s;
+    }
+    .pricing-card .btn:hover, .dashboard-preview .btn:hover, .school-cta .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 28px -10px rgba(0,0,0,0.2);
+    }
+  </style>
+</body>
+</html>

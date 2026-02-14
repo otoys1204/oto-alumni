@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>DataAlumni • Manfaat Lengkap untuk Semua</title>
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(165deg, #f5fbff 0%, #ffffff 100%);
+      color: #1e293b;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --biru-deep: #0a2c4d;
+      --biru-prof: #0a4b7a;
+      --biru-sea: #0f6f7f;
+      --biru-glow: #2271b3;
+      --biru-mist: #e3f0fd;
+      --biru-soft: #d4e6ff;
+      --biru-ice: #c2dcff;
+      --emas: #fbbf24;
+      --emas-light: #fde68a;
+      --emas-pale: #fef3c7;
+      --putih: #ffffff;
+      --abu-ringan: #f8fcff;
+      --shadow-elevation: 0 30px 45px -15px rgba(10, 44, 77, 0.1);
+      --shadow-hover: 0 40px 55px -15px rgba(2, 80, 120, 0.2);
+      --radius-xl: 2.5rem;
+      --radius-lg: 2rem;
+      --radius-md: 1.5rem;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* NAVIGASI (konsisten) */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo i {
+      font-size: 2rem;
+      background: linear-gradient(145deg, #0a4b7a, #0f6f7f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 4px 6px rgba(10,44,77,0.08));
+    }
+    .logo span {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(145deg, #0a2c4d, #0f6f7f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      font-weight: 500;
+    }
+    .nav-links a {
+      color: #0a3b5e;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 6px;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      border-bottom-color: var(--biru-glow);
+      color: var(--biru-deep);
+    }
+    .btn {
+      background: white;
+      padding: 12px 30px;
+      border-radius: 60px;
+      font-weight: 600;
+      border: 1px solid rgba(10,75,122,0.1);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-primary {
+      background: linear-gradient(145deg, #0a4b7a, #0e608b);
+      color: white;
+      box-shadow: 0 12px 22px -10px #0a4b7a;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(145deg, #0e5d8a, #0a4b7a);
+      transform: translateY(-3px);
+      box-shadow: 0 24px 30px -12px #0a4b7a;
+    }
+
+    /* HEADER HALAMAN MANFAAT */
+    .benefits-header {
+      padding: 40px 0 20px;
+      text-align: center;
+      position: relative;
+    }
+    .benefits-header h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      background: linear-gradient(145deg, #0a2c4d, #136375);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+    }
+    .benefits-header p {
+      font-size: 1.25rem;
+      color: #2a5770;
+      max-width: 750px;
+      margin: 0 auto 24px;
+    }
+    .benefits-badge {
+      background: var(--emas-light);
+      color: #0a2c4d;
+      padding: 10px 32px;
+      border-radius: 60px;
+      display: inline-block;
+      font-weight: 600;
+      box-shadow: 0 6px 0 rgba(251,191,36,0.2);
+    }
+
+    /* QUICK STATS MANFAAT */
+    .impact-stats {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      margin: 50px 0 30px;
+      flex-wrap: wrap;
+    }
+    .impact-item {
+      text-align: center;
+    }
+    .impact-item h2 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--biru-deep);
+      line-height: 1;
+    }
+    .impact-item p {
+      color: #0f5e73;
+      font-weight: 500;
+    }
+
+    /* ========== MANFAAT UTAMA ========== */
+    /* Role-based benefit cards — 4 role besar */
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      margin: 60px 0 40px;
+    }
+    .role-card {
+      background: white;
+      border-radius: 40px;
+      padding: 40px 24px;
+      text-align: center;
+      box-shadow: 0 20px 35px -8px rgba(2, 70, 110, 0.06);
+      border: 1px solid white;
+      transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .role-card::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, var(--biru-glow), var(--emas));
+      transform: scaleX(0);
+      transition: transform 0.3s;
+      transform-origin: left;
+    }
+    .role-card:hover::after {
+      transform: scaleX(1);
+    }
+    .role-card:hover {
+      transform: translateY(-12px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--biru-soft);
+    }
+    .role-icon {
+      background: var(--biru-mist);
+      width: 90px;
+      height: 90px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      transition: 0.2s;
+    }
+    .role-card:hover .role-icon {
+      background: var(--biru-deep);
+    }
+    .role-card:hover .role-icon i {
+      color: white;
+    }
+    .role-icon i {
+      font-size: 3rem;
+      color: var(--biru-deep);
+      transition: 0.2s;
+    }
+    .role-card h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--biru-deep);
+      margin-bottom: 16px;
+    }
+    .role-benefit-list {
+      list-style: none;
+      text-align: left;
+      margin-top: 20px;
+    }
+    .role-benefit-list li {
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 450;
+      color: #1f4a64;
+    }
+    .role-benefit-list li i {
+      color: var(--emas);
+      font-size: 1.2rem;
+    }
+
+    /* ========== MANFAAT DETAIL SUPERIOR ========== */
+    .superior-section {
+      background: linear-gradient(115deg, #0a2c4d 0%, #10576b 100%);
+      border-radius: 80px;
+      padding: 70px 60px;
+      color: white;
+      margin: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .superior-section::before {
+      content: "✦";
+      position: absolute;
+      right: 20px;
+      bottom: -20px;
+      font-size: 16rem;
+      opacity: 0.04;
+      color: white;
+      font-family: serif;
+    }
+    .superior-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 36px;
+    }
+    .superior-item {
+      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 44px;
+      padding: 38px 28px;
+      transition: 0.25s;
+    }
+    .superior-item:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.4);
+      transform: translateY(-8px);
+    }
+    .superior-item i {
+      font-size: 2.6rem;
+      color: var(--emas);
+      margin-bottom: 20px;
+    }
+    .superior-item h4 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .superior-item p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.05rem;
+    }
+
+    /* ========== MANFAAT UNTUK ALUMNI (section spesial) ========== */
+    .alumni-banner {
+      display: flex;
+      flex-wrap: wrap;
+      background: white;
+      border-radius: 70px;
+      padding: 50px 50px;
+      margin: 70px 0;
+      box-shadow: var(--shadow-elevation);
+      border: 1px solid var(--biru-ice);
+      align-items: center;
+    }
+    .alumni-banner-text {
+      flex: 1 1 300px;
+    }
+    .alumni-banner-text h2 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--biru-deep);
+      margin-bottom: 24px;
+    }
+    .alumni-feature-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .alumni-feature {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #eef6ff;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 500;
+      color: #0a3b5e;
+    }
+    .alumni-feature i {
+      color: var(--biru-sea);
+      font-size: 1.3rem;
+    }
+
+    /* ========== MANFAAT UNTUK SEKOLAH (counterpart) ========== */
+    .school-premium {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      background: #f0f7fe;
+      border-radius: 70px;
+      padding: 50px;
+      margin: 70px 0;
+    }
+    .school-premium-card {
+      background: white;
+      border-radius: 48px;
+      padding: 40px;
+    }
+    .school-premium-card h3 {
+      font-size: 1.9rem;
+      color: var(--biru-deep);
+      margin-bottom: 24px;
+    }
+
+    /* ========== CALL TO ACTION MANFAAT ========== */
+    .cta-manfaat {
+      background: linear-gradient(145deg, #ffe9b0, #ffe6aa);
+      border-radius: 80px;
+      padding: 60px 60px;
+      text-align: center;
+      margin: 50px 0 80px;
+      color: #0a2c4d;
+    }
+    .cta-manfaat h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .cta-manfaat .btn {
+      background: var(--biru-deep);
+      color: white;
+      padding: 18px 52px;
+      font-size: 1.2rem;
+      margin-top: 24px;
+      border: none;
+    }
+    .cta-manfaat .btn:hover {
+      background: #0e5e8a;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 48px 0 32px;
+      border-top: 2px solid #cde0f0;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 1000px) {
+      .role-grid { grid-template-columns: repeat(2, 1fr); }
+      .superior-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 700px) {
+      .role-grid { grid-template-columns: 1fr; }
+      .superior-grid { grid-template-columns: 1fr; }
+      .school-premium { grid-template-columns: 1fr; }
+      .benefits-header h1 { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- NAVIGASI -->
+    <nav>
+      <div class="logo">
+        <i class="fas fa-database"></i>
+        <span>DataAlumni</span>
+      </div>
+      <div class="nav-links">
+        <a href="#">Beranda</a>
+        <a href="#">Tentang</a>
+        <a href="#manfaat">Manfaat</a>
+        <a href="#">Sekolah</a>
+        <a href="#">Kontak</a>
+        <a href="#">Registrasi</a>
+      </div>
+      <div>
+        <button class="btn btn-primary" onclick="alert('Mulai registrasi sekolah')"><i class="fas fa-graduation-cap"></i> Daftar Sekolah</button>
+      </div>
+    </nav>
+
+    <!-- MAIN TITLE MANFAAT -->
+    <div class="benefits-header" data-aos="fade-down">
+      <h1>📌 Manfaat DataAlumni</h1>
+      <p>Lebih dari sekadar direktori alumni. Ekosistem yang memberdayakan seluruh civitas akademika.</p>
+      <span class="benefits-badge"><i class="fas fa-gem"></i> 360° Keuntungan Integratif</span>
+    </div>
+
+    <!-- STATISTIK DAMPAK (angka interaktif) -->
+    <div class="impact-stats">
+      <div class="impact-item" data-aos="zoom-in">
+        <h2>18.5K+</h2>
+        <p>Alumni terhubung</p>
+      </div>
+      <div class="impact-item" data-aos="zoom-in" data-aos-delay="50">
+        <h2>50+</h2>
+        <p>Sekolah mitra</p>
+      </div>
+      <div class="impact-item" data-aos="zoom-in" data-aos-delay="100">
+        <h2>93%</h2>
+        <p>Pengguna puas</p>
+      </div>
+      <div class="impact-item" data-aos="zoom-in" data-aos-delay="150">
+        <h2>1.200+</h2>
+        <p>Lowongan tersalur</p>
+      </div>
+    </div>
+
+    <!-- ========== 4 PERAN UTAMA ========== -->
+    <div id="manfaat" style="scroll-margin-top: 40px;">
+      <h2 style="font-size: 2.2rem; color: var(--biru-deep); margin-bottom: 20px;" data-aos="fade-right">💎 Keuntungan Spesifik Peran</h2>
+      <div class="role-grid">
+        <!-- 1. Sekolah -->
+        <div class="role-card" data-aos="flip-left">
+          <div class="role-icon">
+            <i class="fas fa-school"></i>
+          </div>
+          <h3>Sekolah</h3>
+          <ul class="role-benefit-list">
+            <li><i class="fas fa-check"></i> Tracer study real-time</li>
+            <li><i class="fas fa-check"></i> Donasi & beasiswa alumni</li>
+            <li><i class="fas fa-check"></i> Akreditasi & borang</li>
+            <li><i class="fas fa-check"></i> Reuni digital</li>
+          </ul>
+        </div>
+        <!-- 2. Alumni -->
+        <div class="role-card" data-aos="flip-left" data-aos-delay="50">
+          <div class="role-icon">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <h3>Alumni</h3>
+          <ul class="role-benefit-list">
+            <li><i class="fas fa-check"></i> Portofolio digital</li>
+            <li><i class="fas fa-check"></i> Lowongan eksklusif</li>
+            <li><i class="fas fa-check"></i> Mentoring adik kelas</li>
+            <li><i class="fas fa-check"></i> Jejaring global</li>
+          </ul>
+        </div>
+        <!-- 3. Yayasan -->
+        <div class="role-card" data-aos="flip-left" data-aos-delay="100">
+          <div class="role-icon">
+            <i class="fas fa-building"></i>
+          </div>
+          <h3>Yayasan</h3>
+          <ul class="role-benefit-list">
+            <li><i class="fas fa-check"></i> Monitoring dampak</li>
+            <li><i class="fas fa-check"></i> Kolaborasi alumni</li>
+            <li><i class="fas fa-check"></i> Fundraising transparan</li>
+            <li><i class="fas fa-check"></i> Laporan tahunan</li>
+          </ul>
+        </div>
+        <!-- 4. Perusahaan -->
+        <div class="role-card" data-aos="flip-left" data-aos-delay="150">
+          <div class="role-icon">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <h3>Perusahaan</h3>
+          <ul class="role-benefit-list">
+            <li><i class="fas fa-check"></i> Talent pool siap kerja</li>
+            <li><i class="fas fa-check"></i> Branding institusi</li>
+            <li><i class="fas fa-check"></i> CSR bersama alumni</li>
+            <li><i class="fas fa-check"></i> Rekrutmen presisi</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== SUPERIOR ADVANTAGES (keunggulan mutlak) ========== -->
+    <div class="superior-section" data-aos="zoom-in-up">
+      <h2 style="font-size: 2.4rem; font-weight: 700; margin-bottom: 40px; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.1);">⚡ Keunggulan Absolut DataAlumni</h2>
+      <div class="superior-grid">
+        <div class="superior-item">
+          <i class="fas fa-robot"></i>
+          <h4>AI Matching</h4>
+          <p>Rekomendasi karier dan mentor berdasarkan minat & riwayat alumni.</p>
+        </div>
+        <div class="superior-item">
+          <i class="fas fa-shield-haltered"></i>
+          <h4>Privacy First</h4>
+          <p>Enkripsi end-to-end, kendali penuh data oleh sekolah.</p>
+        </div>
+        <div class="superior-item">
+          <i class="fas fa-chart-pie"></i>
+          <h4>Analytics Lanjutan</h4>
+          <p>Dashboard interaktif, sebaran alumni, tren karir, dan peta global.</p>
+        </div>
+        <div class="superior-item">
+          <i class="fas fa-qrcode"></i>
+          <h4>Kartu Alumni Digital</h4>
+          <p>Setiap alumni memiliki QR identity untuk networking.</p>
+        </div>
+        <div class="superior-item">
+          <i class="fas fa-calendar-check"></i>
+          <h4>Event Pintar</h4>
+          <p>Undangan otomatis, RSVP, dan reuni virtual terintegrasi.</p>
+        </div>
+        <div class="superior-item">
+          <i class="fas fa-globe"></i>
+          <h4>Integrasi Luas</h4>
+          <p>Sinkron dengan Linkedin, SIM sekolah, dan platform donor.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== SPOTLIGHT MANFAAT UNTUK ALUMNI (lebih intim) ========== -->
+    <div class="alumni-banner" data-aos="fade-right">
+      <div class="alumni-banner-text">
+        <h2><i class="fas fa-star" style="color: var(--emas);"></i> Untuk Alumni, Hadir Lebih Bermakna</h2>
+        <p style="font-size: 1.2rem; color: #1f5e73; margin-bottom: 24px;">Bukan hanya direktori, tapi rumah kedua yang selalu terbuka.</p>
+        <div class="alumni-feature-list">
+          <div class="alumni-feature"><i class="fas fa-id-card"></i> KTA Digital</div>
+          <div class="alumni-feature"><i class="fas fa-bolt"></i> Pencarian kerja</div>
+          <div class="alumni-feature"><i class="fas fa-chalkboard"></i> Jadi mentor</div>
+          <div class="alumni-feature"><i class="fas fa-gift"></i> Beasiswa lanjut</div>
+          <div class="alumni-feature"><i class="fas fa-newspaper"></i> Update kampus</div>
+          <div class="alumni-feature"><i class="fas fa-hand-holding-usd"></i> Galang dana</div>
+        </div>
+      </div>
+      <div style="flex: 0.8; display: flex; justify-content: center;">
+        <i class="fas fa-user-astronaut" style="font-size: 12rem; color: var(--biru-ice);"></i>
+      </div>
+    </div>
+
+    <!-- ========== MANFAAT PREMIUM UNTUK SEKOLAH ========== -->
+    <div class="school-premium" data-aos="fade-left">
+      <div class="school-premium-card">
+        <h3>🏆 Sekolah Unggulan</h3>
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div style="display: flex; gap: 16px;">
+            <i class="fas fa-check-circle" style="color: #0a6e7c; font-size: 1.8rem;"></i>
+            <div><strong style="font-size: 1.2rem;">Akreditasi siap</strong><br>Data alumni mendukung borang akreditasi dan penilaian BAN.</div>
+          </div>
+          <div style="display: flex; gap: 16px;">
+            <i class="fas fa-check-circle" style="color: #0a6e7c; font-size: 1.8rem;"></i>
+            <div><strong style="font-size: 1.2rem;">Pusat karir</strong><br>Perusahaan mitra langsung merekrut lulusan terbaik.</div>
+          </div>
+          <div style="display: flex; gap: 16px;">
+            <i class="fas fa-check-circle" style="color: #0a6e7c; font-size: 1.8rem;"></i>
+            <div><strong style="font-size: 1.2rem;">Donasi berkelanjutan</strong><br>Fitur crowdfunding untuk beasiswa adik kelas.</div>
+          </div>
+        </div>
+      </div>
+      <div class="school-premium-card" style="background: var(--biru-deep); color: white;">
+        <h3 style="color: white;">📈 Dampak Nyata</h3>
+        <p style="margin-bottom: 24px; opacity: 0.9;">Sekolah mitra kami mengalami peningkatan 45% partisipasi alumni dalam 1 tahun.</p>
+        <div style="display: flex; gap: 20px;">
+          <div><span style="font-size: 2rem; font-weight: 700;">50+</span><br>sekolah</div>
+          <div><span style="font-size: 2rem; font-weight: 700;">5K</span><br>donasi terkumpul</div>
+        </div>
+        <button class="btn" style="margin-top: 30px; background: var(--emas); color: #0a2c4d; font-weight: 700; border: none;" onclick="alert('Lihat studi kasus sekolah')"><i class="fas fa-file-alt"></i> Lihat Studi Kasus</button>
+      </div>
+    </div>
+
+    <!-- ========== MANFAAT TAMBAHAN - TESTIMONI CEPAT ========== -->
+    <div style="display: flex; gap: 24px; flex-wrap: wrap; margin: 60px 0;" data-aos="fade-up">
+      <div style="background: white; border-radius: 48px; padding: 36px; flex: 1 1 280px; border: 1px solid var(--biru-soft);">
+        <i class="fas fa-quote-left" style="font-size: 2.4rem; color: var(--biru-glow); opacity: 0.3;"></i>
+        <p style="font-size: 1.15rem; margin: 16px 0;">"Manfaat paling terasa: kami bisa lacak karir alumni hingga ke luar negeri. DataAkreditasi jadi lengkap!"</p>
+        <p style="font-weight: 700; color: var(--biru-deep);">— Humas SMAN 1 Jakarta</p>
+      </div>
+      <div style="background: white; border-radius: 48px; padding: 36px; flex: 1 1 280px; border: 1px solid var(--biru-soft);">
+        <i class="fas fa-quote-left" style="font-size: 2.4rem; color: var(--biru-glow); opacity: 0.3;"></i>
+        <p style="font-size: 1.15rem; margin: 16px 0;">"Dapet 3 lowongan kerja dari database alumni hanya dalam 2 minggu. Keren banget!"</p>
+        <p style="font-weight: 700; color: var(--biru-deep);">— Rina, alumni 2019</p>
+      </div>
+    </div>
+
+    <!-- ========== CALL TO ACTION MANFAAT ========== -->
+    <div class="cta-manfaat">
+      <h2>Siap rasakan manfaatnya?</h2>
+      <p style="font-size: 1.3rem; max-width: 600px; margin: 0 auto;">Bergabung dengan DataAlumni, transformasi hubungan alumni sekolah Anda.</p>
+      <button class="btn" onclick="alert('Registrasi sekolah — demo')"><i class="fas fa-rocket"></i> Daftarkan Sekolah Gratis</button>
+      <button class="btn" style="background: transparent; border: 2px solid var(--biru-deep); color: var(--biru-deep); margin-left: 16px;" onclick="alert('Jadwal demo')"><i class="fas fa-calendar"></i> Jadwalkan Demo</button>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div style="display: flex; gap: 60px; flex-wrap: wrap; width: 100%;">
+        <div style="flex: 2;">
+          <div class="logo" style="margin-bottom: 16px;">
+            <i class="fas fa-database"></i>
+            <span style="font-size: 1.5rem;">DataAlumni</span>
+          </div>
+          <p style="color:#2a4e66;">© 2025 Manfaat nyata untuk ekosistem alumni.</p>
+        </div>
+        <div>
+          <h5 style="color: var(--biru-deep);">Manfaat</h5>
+          <p>Sekolah</p>
+          <p>Alumni</p>
+          <p>Yayasan</p>
+        </div>
+        <div>
+          <h5 style="color: var(--biru-deep);">Sumber Daya</h5>
+          <p>Studi kasus</p>
+          <p>Blog</p>
+          <p>Event</p>
+        </div>
+        <div>
+          <h5 style="color: var(--biru-deep);">Ikuti</h5>
+          <p><i class="fab fa-instagram"></i> @dataalumni</p>
+          <p><i class="fab fa-linkedin"></i> dataalumni</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      once: true,
+      duration: 700,
+      offset: 60
+    });
+
+    // interaksi halus tambahan
+    console.log("Halaman Manfaat DataAlumni - Biru & Emas elegan");
+  </script>
+  <style>
+    /* tambahan micro interaction */
+    .role-card {
+      cursor: default;
+    }
+    .impact-item h2 {
+      animation: fadeSlide 0.6s;
+    }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .btn {
+      transition: all 0.2s;
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 28px -10px #0a4b7a70;
+    }
+    ::selection {
+      background: #fbbf24;
+      color: #0a2c4d;
+    }
+  </style>
+</body>
+</html>
